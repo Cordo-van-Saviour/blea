@@ -1,0 +1,16 @@
+<div>
+	<form name="frm">
+		<h2>Send an Email from Blockchain!</h2>
+  	<input type="email" name="emailTo" ng-pattern="emailFormat" ng-model="outgoingEmail.emailTo" placeholder="to:" class="form-control" ng-required>
+    <span ng-show="frm.emailTo.$dirty && frm.emailTo.$error.required">Required!</span>
+    <span ng-show="frm.emailTo.$dirty && frm.emailTo.$error.pattern">Please enter valid email!</span>
+
+  	<input type="text" name="emailSubject" ng-model="outgoingEmail.emailSubject" placeholder="subject:" class="form-control">
+
+  	<textarea type="text" name="emailBody" ng-model="outgoingEmail.emailBody" placeholder="body:" class="form-control" required rows="10" cols="40"></textarea>
+    <span ng-show="outgoingEmail.emailBody.$dirty && outgoingEmail.emailBody.$error.required">Required!</span>
+
+ 		<input type="submit" name="sendEmail" value="Send" ng-click="sendEmail(frm)" class="form-control">
+ 	</form>
+
+</div>
