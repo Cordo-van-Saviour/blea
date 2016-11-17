@@ -72,8 +72,22 @@ body {
 
 /*STYLES GO HERE!!*/
 
+/*Utility classes*/
+.dblock {
+  display: block;
+}
+
+.fleft {
+  float: left;
+}
+
+.w50 {
+  width: 50%;
+}
+
+
 .container {
-  max-width: 1200px;
+  max-width: 960px;
   margin: auto;
 }
 
@@ -132,8 +146,7 @@ input.form-control:focus {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
-  }
+}
 
   /* Remove the padding we set earlier */
   .header,

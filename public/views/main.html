@@ -1,4 +1,4 @@
-<div>
+<div class="dblock fleft w50">
 	<form name="frm">
 		<h2>Send an Email from Blockchain!</h2>
   	<input type="email" name="emailTo" ng-pattern="emailFormat" ng-model="outgoingEmail.emailTo" placeholder="to:" class="form-control" ng-required>
@@ -13,4 +13,35 @@
  		<input type="submit" name="sendEmail" value="Send" ng-click="sendEmail(frm)" class="form-control">
  	</form>
 
+</div>
+
+<div class="dblock fleft w50">
+	<table>
+		 <thead class="row">
+			 <th class="col-xs-2">Sent to</th>
+			 <th class="col-xs-2">Block number</th>
+			 <th class="col-xs-8">Message</th>
+		 </thead>
+		 <tbody>
+			 <tr ng-repeat="event in eventData">
+				 <td>{{event.args.recipient}}</td>
+				 <td>{{event.blockNumber}}</td>
+				 <td>{{event.args.message}}</td>
+				 <!-- <td>{{eventData}}</td> -->
+			 </tr>
+			 <!-- <tr ng-show="messagesWithUser !== undefined && limit > messagesWithUser.length - 1" ng-if="!users" > -->
+			 <tr>
+				 <!-- <td>
+					 <button type="button" name="button" class="btn-success" ng-click="incrementLimit()">Show More</button>
+				 </td> -->
+			 </tr>
+		 </tbody>
+	 </table>
+</div>
+
+<div class="dblock fleft w50" ng-hide="connected">
+	<h2 style="color:red;">Not connected to blockchain!</h2>
+</div>
+<div class="dblock fleft w50" ng-show="insufficientFunds">
+	<h2 style="color:red;">Insufficient funds in your Ethereum account!</h2>
 </div>

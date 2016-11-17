@@ -1,0 +1,20 @@
+{
+  "name": "blea",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Uros Radovanovic <radovanovic.uros92@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Cordo-van-Saviour/blea",
+  "private": true,
+  "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-cookies": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "angular-touch": "^1.5.8",
+    "web3": "^0.16.0"
+  }
+}
