@@ -13,7 +13,7 @@ angular.module('bleaApp')
     $scope.connected = true;
 
     if(typeof web3 === 'undefined')
-        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:4000'));
+        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
     if (typeof web3 !== 'undefined') {
   		var abi = web3.eth.contract([ { "constant": false, "inputs": [], "name": "withdraw", "outputs": [], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "EmailAddress", "type": "string" }, { "name": "Subject", "type": "string" }, { "name": "Message", "type": "string" } ], "name": "SendEmail", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "type": "function" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "EmailAddress", "type": "string" }, { "indexed": false, "name": "Subject", "type": "string" }, { "indexed": false, "name": "Message", "type": "string" } ], "name": "EmailSent", "type": "event" } ]);
