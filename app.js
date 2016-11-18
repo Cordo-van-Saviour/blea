@@ -68,4 +68,51 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
+
+
+var optionsABI = [[ { "constant": false, "inputs": [], "name": "withdraw", "outputs": [], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "kill", "outputs": [], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "EmailAddress", "type": "string" }, { "name": "Subject", "type": "string" }, { "name": "Message", "type": "string" } ], "name": "SendEmail", "outputs": [ { "name": "", "type": "bool" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [ { "name": "", "type": "address", "value": "0xa03a414e8286e9c089ff6cc03a9230a70fdca0f4" } ], "payable": false, "type": "function" }, { "anonymous": false, "inputs": [ { "indexed": false, "name": "Sender", "type": "address" }, { "indexed": false, "name": "EmailAddress", "type": "string" }, { "indexed": false, "name": "Subject", "type": "string" }, { "indexed": false, "name": "Message", "type": "string" } ], "name": "EmailSent", "type": "event" } ]]
+var contractAddress = "0x752b9619479F605a98EE04e213b96B1f15748119"
+
+
+
+var Web3 = require('web3');
+
+if (typeof web3 !== 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else {
+  // set the provider you want from Web3.providers
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+}
+
+console.log("Eth Node Version: ", web3.version.node);
+//console.log("Network: " ,web3.version.network, web3.version.ethereum);
+console.log("Connected: ", web3.isConnected(), web3.currentProvider);
+console.log("syncing: ", web3.eth.syncing, ", Latest Block: ",web3.eth.blockNumber);
+console.log("Accounts[0]: " , web3.eth.accounts[0], ":",web3.eth.getBalance(web3.eth.accounts[0]).toNumber())
+
+OptionsContract = initContract(optionsABI, contractAddress)
+
+
+
+function initContract(contractAbi, contractAddress) {
+  var MyContract = web3.eth.contract(contractAbi);
+  var contractInstance = MyContract.at(contractAddress);
+  var event = contractInstance.allEvents()
+  console.log("listening for events on ", contractAddress)
+  // watch for changes
+  event.watch(function(error, result){ //This is where events can trigger changes in UI
+    if (!error)
+      console.log(result);
+  });
+  return contractInstance
+}
+
+
+
+
+
+
+
 module.exports = app;

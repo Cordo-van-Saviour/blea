@@ -29,7 +29,7 @@ angular.module('bleaApp')
       //   }
       // })
 
-      SendEmailContract.SendEmail(email, subject, message, {from: authorizedAccount, value: 1000000000000000});
+      SendEmailContract.SendEmail(email, subject, message, {from: authorizedAccount});
 
       // return ({
       //   myContractInstance.SendEmail(email, subject, message, {from: authorizedAccount, value: 80000000000000000}, function(err, address) {
