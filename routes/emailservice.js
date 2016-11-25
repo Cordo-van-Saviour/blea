@@ -3,21 +3,23 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var Web3 = require('web3');
 var nodemailer = require('nodemailer');
+var sqlstatements = require('../modules/sqlstatements');
 
 require('ssl-root-cas').inject();
-
-
-
+sqlstatements.test(4)
 
 /*
 *-------------------------------------------*
-*--------- Listening for an email ----------*
+*--- Setting an email watcher foundation ---*
 *-------------------------------------------*
-Lorem ipsum dolor sit amet, consectetur elit,
-sed do eiusmod tempor incididunt ut laboresen
-dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nis
-i ut aliquip ex ea commodo consequat duis ute
+In this part of code we will be listening for
+events on Ethereum blockchain which contracts
+emit. Firstly, we define web provider that we
+use for creating the connection with Ethereum
+node. After that we define ABI and address of
+our Solidity contract, set the span of blocks
+that we watch, so that all of the foundations
+for sending received data as an email is set.
 */
 
 if (typeof web3 !== 'undefined') {
@@ -42,8 +44,21 @@ console.log(new Date());
 console.log("listening for events on ", contractAddress);
 
 
+router.post('/outgoingemail', function(req, res, next) {
 
-// watch for changes
+});
+
+
+
+/*
+*-------------------------------------------*
+*---------- Watching and sending -----------*
+*-------------------------------------------*
+Now we watch emits of events we had set. When
+a new event is emmited from Ethereum, we exec
+a function that sends parsed data as an email
+to an SMTP server using defined transport obj
+*/
 events.watch(function(error, event) {
 
   if (!error) {
@@ -77,7 +92,14 @@ events.watch(function(error, event) {
       // html: '<b>Hello world ?</b>' // html body
     };
 
-    // send mail with defined transport object
+    /*
+    *---------------------------------*
+    *---------- sendMail() -----------*
+    *---------------------------------*
+    |- Send mail with defined transport
+    object to an SMTP server. --------|
+    */
+
     // transporter.sendMail(mailOptions, function(error, info){
     //   if(error){
     //     return console.log(error);
